@@ -5,14 +5,14 @@
  * Return: 1 if c is uppercase, 0 otherwise
  */
 
-int _isupper(int c);
+int _isupper(int letter);
 {
-	if (c >= 'A' && c <= 'Z')
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
+if (letter >= 'A' && letter <= 'Z')
+{
+return (1);
+}
+else
+{
+return (0);
+}
 }
