@@ -1,9 +1,8 @@
 #include "main.h"
-#include <stdio.h>
 /**
- * main - checks if the letter is upper or not
- *
- * Return: Always 0
+ * _isupper - checks for uppercase character
+ * @letter: the character to be tracked
+ * Return: 1 if c is uppercase, 0 otherwise
  */
 
 int _isupper(int c);
