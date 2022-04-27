@@ -21,6 +21,7 @@ for (i=0; s[i] != '\0'; i++)
 
 for (j=0; s[j] != '\0'; j++)
 {
-    printf("%c", s[j]);
+	_putchar("%c", s[j]);
 }
+	_putchar('\n');
 }
