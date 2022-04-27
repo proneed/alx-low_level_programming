@@ -10,18 +10,11 @@
 
 void _puts_recursion(char *s)
 {
-int i;
-int j;
-int length;
-length = 0;
-for (i=0; s[i] != '\0'; i++)
-{
-    length++;
-}
-
-for (j=0; s[j] != '\0'; j++)
-{
-	_putchar("%c", s[j]);
-}
-	_putchar('\n');
+	if (*s == 0)
+	{
+		_putchar('\n');
+		return;
+	}
+	_putchar(*s);
+	_puts_recursion(s + 1);
 }
