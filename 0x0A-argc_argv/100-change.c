@@ -1,65 +1,72 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
 
 /**
- * calculate_cents - calculates and return cents
- * @num: input params
- * Return: coins
- */
-
-int calculate_cents(int num)
-{
-	int coins = 0;
-
-	while (num)
-	{
-		if (num >= 25)
-		{
-			num -= 25;
-		}
-		else if (num >= 10)
-		{
-			num -= 10;
-		}
-		else if (num >= 5)
-		{
-			num -= 5;
-		}
-		else if (num >= 2)
-		{
-			num -= 2;
-		}
-		else if (num >= 1)
-		{
-			num -= 1;
-		}
-		coins++;
-	}
-	return (coins);
-}
-
-/**
- * main - prints the minimum number of
- * coins to make change for an amount of money
- * @argc: amount of arguement
- * @argv: an array of inputs from argc
+ * _isnumber - checks if string is a number
+ * @s: string
  *
- * Return: 0 for success
+ * Return: On success 1.
+ * If not a number, 0 is returned.
  */
-
-int main(int argc, char *argv[])
+int _isnumber(char *s)
 {
-	int number;
+	int i, check, d;
 
-	if (argc != 2)
+	i = 0, d = 0, check = 1;
+	if (*s == '-')
+		i++;
+	for (; *(s + i) != 0; i++)
 	{
-		return (printf("Error\n"), 1);
+		d = isdigit(*(s + i));
+		if (d == 0)
+		{
+			check = 0;
+			break;
+		}
 	}
-	number = atoi(argv[1]);
-	if (number < 0)
+	return (check);
+}
+/**
+ * main - Entry point
+ *
+ * @argc: Counts the number of parameters that go into main
+ * @argv: Pointer of array of pointers containing strings entering main
+ * Return: Always 0 (Success)
+ */
+int main(int argc, char **argv)
+{
+	int j, ex, coins, cents, d;
+	int c[5] = {25, 10, 5, 2, 1};
+
+	ex = 1, j = 0, coins = 0;
+	if (argc == 2)
 	{
-		return (printf("Error\n"), 1);
+		if (_isnumber(argv[1]))
+		{
+			ex = 0, cents = atoi(argv[1]);
+			if (cents >= 0)
+			{
+				while (cents != 0)
+				{
+					d = cents / c[j];
+					if (d == 0)
+					{
+						j++;
+					}
+					else
+					{
+						coins += d;
+						cents -= (d * c[j]);
+					}
+				}
+			}
+		}
 	}
-	printf("%d\n", calculate_cents(number));
-	return (0);
+	if (ex == 0)
+		printf("%i\n", coins);
+	else
+		printf("%s\n", "Error");
+	return (ex);
 }
